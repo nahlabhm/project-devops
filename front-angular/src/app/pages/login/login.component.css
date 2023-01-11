@@ -1,0 +1,25 @@
+
+.wg{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+}
+
+
+.app_left {
+    position: absolute;
+    right: 30px;
+    width:700px;
+    padding: 2px;
+    }
+
+    .example-card {
+        right: 100px;
+    width:700px;
+    top: 100px;
+        display: grid;
+
+      }
+      

@@ -1,0 +1,13 @@
+.example-spacer {
+    flex: 1 1  auto;
+  }
+ 
+.sidenav{
+  background: #ec250d;
+  background: linear-gradient(0deg,#ec250d,#fd5d93 100%);
+   display:flex;
+  margin-right: 10px;
+  border-radius: 5px;
+  height:80px;
+
+}

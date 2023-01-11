@@ -1,0 +1,13 @@
+.example-button-row {
+    display: table-cell;
+    max-width: 600px;
+  }
+  .mat-mdc-form-field + .mat-mdc-form-field {
+    margin-left: 8px;
+  }
+  .app{
+    margin-left: 8px;
+    max-width: 700px;
+    margin-bottom: 15px;
+
+  }

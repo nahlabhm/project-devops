@@ -1,0 +1,57 @@
+<br>
+<br>
+<div class="position">
+<mat-card class="text-center">
+    <h3>Profile Details </h3>
+    <mat-card-content> 
+        <div class="bootstrap-wrapper ">
+            <div class="container ">
+                <div class="container text-center">
+                    <img src="../../../assets/5995357.jpg"
+                    width="150px"
+                    alt=""
+                   >
+                   <h1 style="font-size: 20px;"> {{user.firstName}} &nbsp;{{user.lastName}}</h1>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <table class="table text-center">
+                            <tr>
+                                <td>username</td>
+                                <td>{{user.username}}</td>
+                            </tr>
+                            <tr>
+                                <td>userId</td>
+                                <td>{{user.id}}</td>
+                            </tr>
+                            <tr *ngIf="user.phone">
+                                <td>Phone</td>
+                                <td>{{user.phone}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{{user.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Role</td>
+                                <td>{{user.authorities[0].authority}}</td>
+                            </tr>
+                            <tr>
+                                <td>Statuts</td>
+                                <td>{{user.enabled ? "ACTIVE":"NOTACTIVE"}}</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions>
+        <div class="example-button-row">
+            <button mat-stroked-button color="warn">Update</button>
+            <button mat-button disabled>Disabled</button>
+        </div>
+    </mat-card-actions>
+</mat-card>
+</div>

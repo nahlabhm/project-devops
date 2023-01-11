@@ -1,0 +1,35 @@
+<mat-toolbar class="sidenav" >
+   
+    <span   style="margin-right:50px;font-size:25px;color:aliceblue">certification</span>
+    <span class="example-spacer"></span>
+<div class="nav">
+    <button 
+    routerLink="/user/"
+    class="text"
+    style="margin-right:50px;font-size:15px;color:aliceblue"
+     mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" >
+      Home
+    </button>
+       
+   
+  </div>
+    <button
+    (click)="logout()"
+    *ngIf="login.isLoggedIn()"
+    style="margin-right:50px;font-size:15px;color:aliceblue "
+     mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      Logout
+    </button>
+
+    <button
+    routerLink="/admin/profile"
+    *ngIf="login.isLoggedIn()"
+    style="margin-right: 80px;font-size:15px;color:aliceblue "
+       mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      {{login.getUser().username}}
+    </button>
+  
+  </mat-toolbar>
+<div class="col-md-10">
+  <router-outlet></router-outlet>
+</div>

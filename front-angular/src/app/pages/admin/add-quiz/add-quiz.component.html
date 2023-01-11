@@ -1,0 +1,71 @@
+
+<br>
+<br>
+<mat-card style="padding-left: 50px;margin-left:80px">
+    <h2 style="color:#df0a98;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Add New Quiz </h2>
+    <div class="container">
+        <div  class="row">
+            <div class="col-md-8 offset-md-2">
+                <form class="example-form" (ngSubmit)="addQuiz()">
+                
+                    <table class="example-full-width" cellspacing="0"><tr>
+                      <td><mat-form-field class="example-full-width">
+                        <mat-label>Title</mat-label>
+                        <input matInput type="text"
+                        [(ngModel)]="categoryData.titre"
+                        required
+                         name="titre" placeholder="Enter here">
+                      </mat-form-field></td>
+                      <td>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Catgories</mat-label>
+                            <mat-select  name="category" [(ngModel)]="categoryData.category.cid">
+                              <mat-option *ngFor="let c of categories" [value]="c.cid" >
+                           {{c.title}}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    
+                    </td>
+                    </tr></table>
+                  
+                    <p>
+                    
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput type="text"  [(ngModel)]="categoryData.description"  name="description" placeholder="Enter here  "></textarea>
+                      </mat-form-field>
+                    </p>
+                  
+                    <table class="example-full-width" cellspacing="0"><tr>
+                      <td><mat-form-field class="example-full-width">
+                        <mat-label>Maximum Marks</mat-label>
+                        <input type="number"  [(ngModel)]="categoryData.maxMarks" name="maxMarks" matInput placeholder="Enter Here">
+                      </mat-form-field></td>
+                      <td><mat-form-field class="example-full-width">
+                        <mat-label>Number of Question</mat-label>
+                        <input type="number" name="numberQuestions"  [(ngModel)]="categoryData.numberQuestions" matInput placeholder="Enter Here">
+                      </mat-form-field></td>
+                     
+                    </tr></table>
+                    <mat-slide-toggle
+                    name="active"
+          class="example-margin"
+          [checked]="false"
+          [(ngModel)]="categoryData.active" >
+       Pulish Status
+      </mat-slide-toggle>
+<br>
+<br>
+      <div class="container text-center">
+        <button mat-raised-button color="accent" type="submit"
+        >Add Category</button>
+     </div>
+                  </form>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+</mat-card>

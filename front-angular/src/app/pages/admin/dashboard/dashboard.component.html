@@ -1,0 +1,71 @@
+<mat-toolbar class="sidenav" >
+   
+    <span   style="margin-right:50px;font-size:25px;color:aliceblue">certification</span>
+    <span class="example-spacer"></span>
+<div class="nav">
+    <button 
+    routerLink="/admin/"
+    class="text"
+    style="margin-right:50px;font-size:15px;color:aliceblue"
+     mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" >
+      Home
+    </button>
+       
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"  style="margin-right:50px;font-size:15px;color:aliceblue ">
+      categorie
+    </button>
+    <mat-menu #menu="matMenu">
+      <button 
+      routerLink="/admin/view-category"
+      mat-menu-item>
+        <mat-icon>visibility</mat-icon>
+        <span style="font-size: 15px;">View categories</span>
+      </button>
+      <button 
+      routerLink="/admin/add-category"
+      mat-menu-item>
+        <mat-icon>add</mat-icon>
+        <span style="font-size: 15px;">Add categories</span>
+      </button>
+     
+    </mat-menu>
+ <button mat-icon-button [matMenuTriggerFor]="aboveMenu" aria-label="Example icon-button with a menu"  style="margin-right:50px;font-size:15px;color:aliceblue ">
+      Quiz
+    </button>
+    <mat-menu #aboveMenu="matMenu">
+      <button
+      routerLink="/admin/view-quiz"
+       mat-menu-item>
+        <mat-icon>visibility</mat-icon>
+        <span style="font-size: 15px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">View Quizzes</span>
+      </button>
+  
+      <button 
+      routerLink="/admin/add-quiz"
+      mat-menu-item>
+        <mat-icon>add</mat-icon>
+        <span style="font-size: 15px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Add Quiz</span>
+      </button>
+     
+    </mat-menu>
+  </div>
+    <button
+    (click)="logout()"
+    *ngIf="login.isLoggedIn()"
+    style="margin-right:50px;font-size:15px;color:aliceblue "
+     mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      Logout
+    </button>
+
+    <button
+    routerLink="/admin/profile"
+    *ngIf="login.isLoggedIn()"
+    style="margin-right: 80px;font-size:15px;color:aliceblue "
+       mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      {{login.getUser().username}}
+    </button>
+  
+  </mat-toolbar>
+<div class="col-md-10">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,46 @@
+<br>
+<br>
+<mat-card style="padding-left: 50px;margin-left:20%">
+
+   <br>
+   <br>
+        <mat-accordion  *ngFor="let c of categories" >
+
+    
+              <ul>
+
+            <mat-expansion-panel hideToggle class="app">
+              <mat-expansion-panel-header>
+
+              <button mat-raised-button (click)="deleteCategory(c.title)" style="margin-left:90%;"><mat-icon >delete</mat-icon></button>
+            </mat-expansion-panel-header>
+
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                 
+                   <li style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size:20px"> {{c.title}}</li>
+                                </mat-panel-title>
+              
+              </mat-expansion-panel-header>
+              <p style="font-size:20px;font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">{{c.description}}</p>
+            </mat-expansion-panel>
+          </ul>
+
+   
+            </mat-accordion>
+            
+   
+        <br>
+        <br>
+        <br>
+    <div class="container text-center">
+        <button mat-raised-button color="accent"
+        routerLink="/admin/add-category"
+        >Add Category</button>
+     </div>
+    
+    </mat-card>
+
+
+    
+  

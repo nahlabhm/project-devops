@@ -1,0 +1,15 @@
+.wg{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 5rem;
+    height: 100%;
+}
+
+
+.app_left {
+    position: absolute;
+    right: 30px;
+    width:600px;
+    padding: 2px;
+    }
