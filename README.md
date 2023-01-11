@@ -1,0 +1,5 @@
+# project-devops![admin](https://user-images.githubusercontent.com/49809803/211821742-541b130b-df63-463c-ba34-fc4372c09d1b.PNG)
+![login](https://user-images.githubusercontent.com/49809803/211821765-cd4a8e9c-8587-4e74-b721-bd950e679a68.PNG)
+![add quiz](https://user-images.githubusercontent.com/49809803/211821786-6b16b0ce-721d-4bc5-aafe-f976e647637c.PNG)
+![profile](https://user-images.githubusercontent.com/49809803/211821805-77f2bfca-334f-4eb7-aa36-cc99930b0a49.PNG)
+![quiz](https://user-images.githubusercontent.com/49809803/211821810-1c160f2d-7f0b-4fd8-9525-bd050f00b5e3.PNG)
