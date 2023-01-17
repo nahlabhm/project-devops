@@ -1,10 +1,7 @@
 pipeline {
     agent any
-	tools{
-		maven 'maven_4_0_0'
-	}
      environment {
-		DH_CRED=credentials('application')
+		DH_CRED = credentials('application')
 	}
     stages {
 	  
