@@ -1,7 +1,7 @@
 pipeline {
     agent any
 	 environment {     
-    DH_CRED= credentials('appweb')     
+    DH_CRED= credentials('id_cred')     
   }  
 
   stages {
