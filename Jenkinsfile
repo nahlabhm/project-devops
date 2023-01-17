@@ -9,18 +9,21 @@ pipeline {
                 git 'https://github.com/nahlabhm/project-devops.git'    
             }
         }
-	  stage ('Build my-app') {
-            steps {
-                sh 'npm install '
-                }
-    }
+
     stage ('Test Unitaire') {
             steps {
                 sh 'ls -la'
                 
     }
 }
-   
+  stage ('Cleaning up'){
+steps{
+sh 'docker rmi nahlabhm/project_devops'
+echo ' Image app cleaned'
+sh 'docker logout'
+
+}
+} 
         
     }
 }
