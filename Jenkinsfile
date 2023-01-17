@@ -1,5 +1,8 @@
 pipeline {
     agent any
+	tools{
+		maven 'maven 4.0.0'
+	}
      environment {
 		DH_CRED=credentials('application')
 	}
@@ -7,15 +10,11 @@ pipeline {
 	  
          stage('spring boot Code') { 
             steps {
-                git 'https://github.com/nahlabhm/project-devops.git'
+              checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nahlabhm/project-devops.git']]])
+		     sh 'mvn clean install'
                  
             }
         }
-	     stage('Log') {
-      steps {
-        sh 'ls -la'
-      }
-    }
           stage('Build') {
        steps {
         sh 'docker build -f nahlabhm/project_devops/font_angular -f ./Dockerfile .'
