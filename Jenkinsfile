@@ -1,14 +1,14 @@
 pipeline {
     agent any
 	 environment {     
-    DH_CRED= credentials('id_cred')     
+    ID_CRED =  credentials('id_cred')     
   }  
 
   stages {
 	  stage('Docker login') { 
             steps {
                 
-                sh 'echo $DH_CRED_PSW | docker login -u $DH_CRED_USR --password-stdin'
+                sh 'echo $ID_CRED_PSW |docker login -u $ID_CRED_USR --password-stdin'
               
              
             }
