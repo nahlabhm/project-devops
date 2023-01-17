@@ -4,25 +4,33 @@ pipeline {
 		DH_CRED = credentials('application')
 	}
     stages {
+	       stage('Docker login') { 
+            steps {
+                
+                sh 'echo $DH_CRED_PSW | docker login -u $DH_CRED_USR --password-stdin'
+              
+             
+            }
+        }
 	  
          stage('spring boot Code') { 
             steps {
-              checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nahlabhm/project-devops.git']]])
-		     sh 'mvn clean install'
-                 
+                git 'https://github.com/nahlabhm/project-devops.git'    
             }
         }
-          stage('Build') {
-       steps {
-        sh 'docker build -f nahlabhm/project_devops/font_angular -f ./Dockerfile .'
-                echo 'Image built'
-      }
+          tage ('Build my-app') {
+            steps {
+                sh 'cd project_devops'
+                sh 'npm install package.json'
+                echo "Build react-client successfully"
+                }
     }
-	    stage('Login') {
-          steps {
-                sh 'echo $DH_CRED_PSW | docker login -u $DH_CRED_USR --password-stdin'
-	  }
-	}
+    stage ('Test Unitaire') {
+            steps {
+                sh 'npm config ls -l'
+                
+    }
+}
         
     }
 }
