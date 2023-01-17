@@ -18,7 +18,8 @@ pipeline {
     }
           stage('Build') {
        steps {
-        sh 'docker build -f front_angular/Dockerfile -t nahlabhm/front_angular:latest .'
+        sh 'docker build -f nahlabhm/project_devops/font_angular -f ./Dockerfile .'
+                echo 'Image built'
       }
     }
 	    stage('Login') {
