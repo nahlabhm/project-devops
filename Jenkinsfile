@@ -12,12 +12,12 @@ pipeline {
         }
          stage('spring boot Code') { {
             steps {
-checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nahlabhm/project-devops']]])                sh 'mvn clean install'
+                git 'https://github.com/nahlabhm/project-devops.git'
             }
         }
           stage('angular Code') { {
             steps {
-checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nahlabhm/project-devops']]])                sh 'build command'
+                git 'https://github.com/nahlabhm/project-devops.git'
             }
         }
        steps {
