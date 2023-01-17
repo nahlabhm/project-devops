@@ -1,24 +1,24 @@
 pipeline {
     agent any
    environment {     
-    DH_CRED= credentials('application')     
+    APP= credentials('appweb')     
   }  
   stages {
-        stage('Docker login') { 
-            steps {
-                
-                sh 'echo $DH_CRED_PSW | docker login -u $DH_CRED_USR --password-stdin'
-              
-             
-            }
-        }
-	  
-         stage('spring boot Code') { 
+	    stage('spring boot Code') { 
             steps {
                 git 'https://github.com/nahlabhm/project-devops.git'    
             }
         }
-          tage ('Build my-app') {
+        stage('Docker login') { 
+            steps {
+                
+                sh 'echo $APP_PSW | docker login -u $APP_USR --password-stdin'
+              
+             
+            }
+        
+       
+          stage ('Build ') {
             steps {
                 sh 'cd project_devops'
                 sh 'npm install package.json'
