@@ -1,7 +1,7 @@
 pipeline {
     agent any
    environment {     
-    DH_CRED= credentials('dh-cred')     
+    DH_CRED= credentials('application')     
   }  
   stages {
         stage('Docker login') { 
@@ -27,8 +27,7 @@ pipeline {
     }
     stage ('Test Unitaire') {
             steps {
-                sh 'npm config ls -l'
-                
+        sh 'ls -la'                
     }
 }
         
