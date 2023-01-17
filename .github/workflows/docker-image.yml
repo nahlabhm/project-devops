@@ -1,61 +1,42 @@
-name: Docker Image CI
+name: Build Containers for Prod & Push to Dockerhub
 
 on:
-  push:
-    branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 jobs:
-
-  build:
-    name: Build, push, and deploy
+  build-and-deploy-back:
+    name: Build and Deploy Back-end
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-    - name: Checkout main
-      uses: actions/checkout@v3
-
-    - name: Login to Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
-    - name: Provide permission to run mvnw
-      run: chmod +x ./app/mvnw
-
-    - name: Build and push Angular Image
-      id: angular_docker_build
+    - name: Build and push Docker image
       uses: docker/build-push-action@v1
       with:
-        context: ./front-angular
-        file: ./front-angular/Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.ANGULAR_IMAGE_NAME }}:${{ github.sha }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: nahlabhm/app
+        dockerfile: app/app/Dockerfile
+        tags: latest
 
-    - name: Build and push Spring Boot Image
-      id: spring-boot-docker_build
-      uses: docker/build-push-action@v2
+  build-and-deploy-front:
+    name: Build and Deploy Front-end
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v1
       with:
-        context: ./app
-        file: ./app/Dockerfile
-        push: true
-        tags:  ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.SPRING_BOOT_IMAGE_NAME }}:${{ github.sha }}
-
-    - name: Install doctl
-      uses: digitalocean/action-doctl@v2
-      with:
-        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-
-    - name: Save DigitalOcean kubeconfig with short-lived credentials
-      run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 k8s-1-20-2-do-0-blr1-1619022201280
-
-    # Deploy Angular & Spring Boot Docker image to the DigitalOcean kubernetes cluster
-    - name: Deploy
-      run: |-
-        kubectl set image deployment/${{env.ANGULAR_DEPLOYMENT_NAME}} ${{env.ANGULAR_CONTAINER_NAME}}=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.ANGULAR_IMAGE_NAME }}:${{ github.sha }}
-        kubectl set image deployment/${{env.SPRING_BOOT_DEPLOYMENT_NAME}} ${{ env.SPRING_BOOT_CONTAINER_NAME}}=${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.SPRING_BOOT_IMAGE_NAME }}:${{ github.sha }}
-        kubectl rollout status deployment/${{env.ANGULAR_DEPLOYMENT_NAME}}
-        kubectl rollout status deployment/${{env.SPRING_BOOT_DEPLOYMENT_NAME}}
-        kubectl get services -o wide
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: nahlabhm/front_angulair
+        dockerfile: front_angulair/Dockerfile
+        tags: latest
