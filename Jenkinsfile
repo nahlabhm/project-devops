@@ -11,14 +11,12 @@ pipeline {
         }
 	  stage ('Build my-app') {
             steps {
-                sh 'cd my-app'
-                sh 'npm install package.json'
-                echo "Build react-client successfully"
+                sh 'npm install '
                 }
     }
     stage ('Test Unitaire') {
             steps {
-                sh 'npm config ls -l'
+                sh 'ls -la'
                 
     }
 }
