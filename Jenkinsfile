@@ -13,7 +13,8 @@ pipeline {
         }
         stage(' project'){
             steps{
-        sh 'build command'
+             sh 'cd project_devops'
+                sh 'npm install package.json'
 	    }
   }
         stage('Login') {
