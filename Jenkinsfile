@@ -20,8 +20,9 @@ pipeline {
                 git 'https://github.com/nahlabhm/project-devops.git'
             }
         }
+         stage('Build') {
        steps {
-        sh 'docker build -f curriculum-front/Dockerfile -t fuze365/curriculum-front:latest .'
+        sh 'docker build -f front_angular/Dockerfile -t nahlabhm/front_angular:latest .'
       }
     }
     stage('Log into Dockerhub') {
