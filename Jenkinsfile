@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment {
-		DOCKERHUB_CREDENTIALS=credentials('angular')
+		App_CREDENTIALS=credentials('application')
 	}
     stages {
       
@@ -13,12 +13,12 @@ pipeline {
         }
         stage(' project'){
             steps{
-               sh 'mvn clean install'
-    }
+        sh 'build command'
+	    }
   }
         stage('Login') {
           steps {
-		sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+		sh 'echo $App_CREDENTIALS_PSW | docker login -u $App_CREDENTIALS_USR --password-stdin'
 	}
 	}
 
