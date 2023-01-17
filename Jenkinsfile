@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment {
-		DH_CRED = credentials('application')
+		DH_CRED = credentials('dh-cred')
 	}
     stages {
 	    
