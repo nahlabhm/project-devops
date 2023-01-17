@@ -1,7 +1,7 @@
 pipeline {
     agent any
      environment {
-		App_CREDENTIALS=credentials('application')
+		DH_CRED=credentials('application')
 	}
     stages {
 	  
@@ -23,8 +23,8 @@ pipeline {
     }
 	    stage('Login') {
           steps {
-		sh 'echo $App_CREDENTIALS_PSW | docker login -u $App_CREDENTIALS_USR --password-stdin'
-	}
+                sh 'echo $DH_CRED_PSW | docker login -u $DH_CRED_USR --password-stdin'
+	  }
 	}
         
     }
