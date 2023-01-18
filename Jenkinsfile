@@ -1,14 +1,21 @@
 pipeline {
     agent any
-	environment {
-		DOCKERHUB_CREDENTIALS=credentials('id_tokens')
-	}
 
   stages {
 	
 	    stage('spring boot Code') { 
             steps {
                 git 'https://github.com/nahlabhm/project-devops.git' 
+            }
+        }
+	   stage('Example Username/Password') {
+            environment {
+                SERVICE_CREDS = credentials('id_tokens)
+            }
+            steps {
+                sh 'echo "Service user is $SERVICE_CREDS_USR"'
+                sh 'echo "Service password is $SERVICE_CREDS_PSW"'
+                sh 'curl -u $SERVICE_CREDS https://myservice.example.com'
             }
         }
 	   stage ('Build my-app') {
@@ -39,12 +46,6 @@ pipeline {
           sh 'docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD'
     }
     }
-  stage('Login') {
-
-			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-			}
-		}
 
 		stage('Push') {
 
