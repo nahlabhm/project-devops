@@ -11,6 +11,12 @@ pipeline {
                 git 'https://github.com/nahlabhm/project-devops.git' 
             }
         }
+	   stage ('Build my-app') {
+            steps {
+                sh 'npm test'
+                echo "Build react-client successfully"
+                }
+    }
 	   
     stage ('Test Unitaire') {
             steps {
