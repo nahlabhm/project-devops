@@ -1,7 +1,7 @@
 pipeline {
     agent any
- environment {     
-    TOKEN= credentials('token_id')     
+ tools {    
+	 maven 
   }  
 
   stages {
@@ -16,9 +16,17 @@ pipeline {
 	
 	    stage('spring boot Code') { 
             steps {
-                git 'https://github.com/nahlabhm/project-devops.git'    
+                git 'https://github.com/nahlabhm/project-devops.git' 
+		    sh 'mvn install'
             }
         }
+	     stage ('Build my-app') {
+            steps {
+               
+                sh 'npm install '
+                echo "Build react-client successfully"
+                }
+    }
 
     stage ('Test Unitaire') {
             steps {
@@ -26,14 +34,22 @@ pipeline {
                 
     }
 }
-  stage ('Cleaning up'){
-steps{
-sh 'docker rmi nahlabhm/project_devops'
-echo ' Image app cleaned'
-sh 'docker logout'
+	    stage('Build') {
+       steps {
+        sh 'docker build -f front_angular/Dockerfile -t nahlabhm/front_angular:latest .'
+      }
+    }
+        stage('Log into Dockerhub') {
+            environment {
+              DOCKERHUB_USER = 'nahlabhm'
+              DOCKERHUB_PASSWORD = 'dckr_pat_9KeqWWmNnix0dzoNSdiS6Qhhx5c'
+    }
 
-}
-} 
+          steps {
+          sh 'docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD'
+    }
+    }
+  
         
     }
 }
