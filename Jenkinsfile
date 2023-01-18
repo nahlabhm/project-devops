@@ -18,12 +18,6 @@ pipeline {
                 sh 'curl -u $SERVICE_CREDS https://myservice.example.com'
             }
         }
-	   stage ('Build my-app') {
-            steps {
-                sh 'npm test'
-                echo "Build react-client successfully"
-                }
-    }
 	   
     stage ('Test Unitaire') {
             steps {
@@ -36,29 +30,6 @@ pipeline {
         sh 'docker build -f front_angular/Dockerfile -t nahlabhm/front_angular:latest .'
       }
     }
-        stage('Log into Dockerhub') {
-            environment {
-              DOCKERHUB_USER = 'nahlabhm'
-              DOCKERHUB_PASSWORD = 'dckr_pat_9KeqWWmNnix0dzoNSdiS6Qhhx5c'
-    }
-
-          steps {
-          sh 'docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD'
-    }
-    }
-
-		stage('Push') {
-
-			steps {
-                 sh 'docker push nahlabhm/front_angular:latest'			}
-		}
-	}
-
-	post {
-		always {
-			sh 'docker logout'
-		}
-	}
         
     }
 }
