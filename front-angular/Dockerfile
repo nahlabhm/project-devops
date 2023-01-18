@@ -8,5 +8,5 @@ RUN ls -l
 RUN npm run build
 COPY front_angular/nodeServer.js dist/nodeServer.js
 WORKDIR /usr/src/app/dist
-EXPOSE 8091
+
 CMD [ "node", "nodeServer.js" ]
