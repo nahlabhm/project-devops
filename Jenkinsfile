@@ -5,14 +5,6 @@ pipeline {
   }  
 
   stages {
-	  stage('Docker login') { 
-            steps {
-                
-                sh 'echo $TOKEN_PSW | docker login -u $TOKEN_USR --password-stdin'
-              
-             
-            }
-        }
 	
 	    stage('spring boot Code') { 
             steps {
