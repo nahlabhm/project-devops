@@ -1,15 +1,10 @@
 pipeline {
     agent any
- tools {    
-	 maven Maven
-  }  
-
   stages {
 	
 	    stage('spring boot Code') { 
             steps {
                 git 'https://github.com/nahlabhm/project-devops.git' 
-		    sh 'mvn install'
             }
         }
 	     stage ('Build my-app') {
@@ -22,6 +17,8 @@ pipeline {
 
     stage ('Test Unitaire') {
             steps {
+		    
+		    sh 'mvn install'
                 sh 'ls -la'
                 
     }
