@@ -1,12 +1,12 @@
 FROM node:lts-alpine
 WORKDIR /usr/src/app
-COPY curriculum-front/package*.json ./
+COPY front_angular/package*.json ./
 RUN ls -l
 RUN npm install
-COPY curriculum-front ./
+COPY front_angular ./
 RUN ls -l
 RUN npm run build
-COPY curriculum-front/nodeServer.js dist/nodeServer.js
+COPY front_angular/nodeServer.js dist/nodeServer.js
 WORKDIR /usr/src/app/dist
 EXPOSE 8091
 CMD [ "node", "nodeServer.js" ]
